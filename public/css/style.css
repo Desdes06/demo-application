@@ -21,7 +21,29 @@ h1 {
     margin-top: 64px;
 
 }
+.btn {
+    padding: 10px 45px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 550;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 30px;
 
+}
+.blue {
+    background: #6CE3DF;
+    border: 3px solid #48D1CC;
+}
+.orange {
+    background: #FEC968;
+    border: 3px solid #FDA505;
+}
+.green {
+    background: #3CB371;
+    border-radius: 30px ;
+}
 /* home layout */
 
 .home-layout {
@@ -35,4 +57,64 @@ h1 {
     width: 870px;
 }
 
-/* crud layout */
+/* pagenav layout */
+.crud-layout {
+    margin-left: 29px;
+
+    
+}
+.main-title {
+    display: flex;
+    flex-direction: row;
+}
+.arrow {
+    padding: 40px;
+    cursor: pointer;
+    transition: all .5s;
+}
+.arrow img:hover {
+    transform: scale(1.05);
+
+}
+.btn-upload {
+    margin-left: 144px;   
+}
+
+.jarak {
+    margin-top: 250px;
+
+}
+.user {
+    display: flex;
+    flex-direction: row;
+}
+.user img {
+    width: 50%; 
+    height: 50%; 
+    margin-left: -5.8%;
+}
+.user a {
+    margin-top: 24%;
+}
+.tabeluser {
+    margin-top: 70px;
+    margin-bottom: 140px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* tabel data layout */
+table {
+    border: 1px solid white;
+    color: white;
+}
+th {
+    background: #4FCF9E;
+    padding: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.4); 
+}
+td {
+    background: #B0E0CE;
+    padding: 20px;
+    text-align: center;
+}
