@@ -1,0 +1,38 @@
+body {
+    background-color: #ffffff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins, sans-serif;
+}
+h1 {
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 70px; 
+    background: -webkit-linear-gradient(left, #FFA500, #32CD32, #00CED1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+.title {
+    margin-bottom: 34px;
+    margin-top: 64px;
+
+}
+
+/* home layout */
+
+.home-layout {
+    margin-left: 69px;
+}
+.home-layout p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    height: 209px;
+    width: 870px;
+}
+
+/* crud layout */
