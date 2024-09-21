@@ -1,7 +1,10 @@
 @include('css')
+
+@include('js')
+
 <div class="home-layout">
     <div class="title">
-        <h1 class="text-gradient-orange-500 to-green-400">Selamat Datang di Bandung</h1>
+        <h1 class="text-gradient-orange-500 to-green-400">Selamat Datang di {{ $dataC }}</h1>
     </div>
 
 <div class="description">
