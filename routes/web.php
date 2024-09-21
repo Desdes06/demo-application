@@ -6,3 +6,6 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/pagenav', function () {
+    return view('pagenav');
+});

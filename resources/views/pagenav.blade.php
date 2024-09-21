@@ -7,7 +7,7 @@
     ?>
 </script>
 
-
+@include('componen/navbar')
 @include('css')
 <div class="crud-layout">
     <div class="main-title">

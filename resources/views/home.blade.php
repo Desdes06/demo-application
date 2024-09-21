@@ -1,3 +1,4 @@
+@include('componen/navbar')
 @include('css')
 <div class="home-layout">
     <div class="title">
