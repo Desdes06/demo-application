@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 h1 {
     font-size: 60px;
@@ -99,26 +99,47 @@ h1 {
 
 .jarak {
     margin-top: 250px;
-
 }
+
 .user {
     display: flex;
     flex-direction: row;
 }
 .user img {
-    width: 50%; 
-    height: 50%; 
-    margin-left: -5.8%;
+    max-width: 500px;
+    margin-left: -6.8%;
 }
-.user a {
-    margin-top: 24%;
-}
+
 .tabeluser {
     margin-top: 70px;
     margin-bottom: 140px;
     margin-left: 10px;
     margin-right: 10px;
 }
+input[type="file"] {
+    display: none;
+}
+label {
+    display: inline-block;
+    color: #fff;
+    background: #6CE3DF;
+    text-align: center;
+    padding: 6px 30px;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all .5s;
+    border: 3px solid #48D1CC;
+    font-weight: 550;   
+}
+label:hover {
+    background: #48D1CC;
+    border: 3px solid #6CE3DF;
+}
+
+
+
 
 /* tabel data layout */
 table {

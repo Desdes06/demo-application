@@ -1,3 +1,4 @@
+@include('componen/navbar')
 @include('css')
 
 @include('js')
