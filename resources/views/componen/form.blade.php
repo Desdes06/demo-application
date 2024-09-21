@@ -16,7 +16,7 @@
         class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
         <div
             data-dialog="sign-in-dialog"
-            class="fixed top-5  mx-auto grid h-4/5 flex w-4/5 flex-col rounded-xl bg-[#A5D6C1] text-gray-700 shadow-md p-4">
+            class="fixed mx-auto grid h-4/5 flex w-4/5 flex-col rounded-xl bg-[#A5D6C1] text-gray-700 shadow-md p-4">
             <div class="flex justify-end flex-row py-6 place-items-center sticky top-0">
                 <div class="basis-full text-4xl font-bold text-center text-white">Data Lengkap</div>
                 <div class="basis-1/12 place-items-center">
