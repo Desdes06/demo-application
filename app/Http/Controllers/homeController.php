@@ -52,8 +52,9 @@ class homeController extends Controller
 
         return redirect()->back()->with('error', 'File not found');
     }
-    public function tabeldata() 
+
+    public function form()
     {
-        return redirect()->back();
+        return view('componen.form');
     }
 }
