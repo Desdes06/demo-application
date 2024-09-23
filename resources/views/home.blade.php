@@ -1,4 +1,4 @@
-@include('componen/navbar')
+@include('componen/navbar', ['active' => 'home'])
 @include('css')
 <div class="home-layout">
     <div class="title">
