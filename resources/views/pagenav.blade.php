@@ -1,7 +1,6 @@
 @include('componen/navbar', ['active' => 'pagenav'])
 @include('componen/form')
 @include('css')
-<body>
     <div class="crud-layout flex items-center">
         <div class="main-title flex items-center">
             <div class="arrow">
@@ -12,7 +11,6 @@
             </div>
         </div>
     </div>
-
     <br>
     <div class="pl-8">
         <button 
@@ -51,7 +49,7 @@
                         <button type="button" class="flex-shrink-0" onclick="openDeleteModal({{ $user['id'] }})">
                             <img src="{{ asset('trash.png') }}" alt="Hapus" class="w-8 h-8">
                         </button>
-                        <button type="button" class="flex-shrink-0" data-dialog-target="view-dialog-{{$user['id']}}">
+                        <button type="button" class="flex-shrink-0 mt-2" data-dialog-target="view-dialog-{{$user['id']}}">
                             <div style="background-color: #FFDD2D; display: inline-block; padding: 8px; border-radius: 6.5px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
@@ -83,7 +81,6 @@
             </div>
         </div>
     </div>
-</body>
 <script>
     function openDeleteModal(userId) {
     const deleteForm = document.getElementById('deleteForm');

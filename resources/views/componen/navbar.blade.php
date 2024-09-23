@@ -1,4 +1,3 @@
-@include('css')
 <!doctype html>
 <html>
 <head>
