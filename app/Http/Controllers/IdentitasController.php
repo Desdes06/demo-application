@@ -6,6 +6,8 @@ use App\Models\Identitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+
 
 
 class IdentitasController extends Controller
@@ -85,44 +87,47 @@ class IdentitasController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $user = Identitas::find($id);
+{
+    $user = Identitas::find($id);
 
-        $delImg = Identitas::where('id', $id)->value('image');
-        
-        $request->validate([
-            'nik' => 'nullable',
-            'nama_lengkap' => 'required|string|max:255',
-            'tempat_tanggal_lahir' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'rt_rw' => 'required|integer|max:255',
-            'kel_desa' => 'required|string|max:255',
-            'kecamatan' => 'required|string|max:255',
-            'agama' => 'required|string|max:255',
-            'status_perkawinan' => 'required|string|max:255',
-            'pekerjaan' => 'required|string|max:255',
-            'kewarganegaraan' => 'required|string|max:255',
-            'berlaku_hingga' => 'required|string|max:255',
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            
-        ]);
+    $delImg = $user->image;
 
-        if($user->image) {
+    $request->validate([
+        'nik' => 'nullable',
+        'nama_lengkap' => 'nullable|string|max:255',
+        'tempat_tanggal_lahir' => 'nullable|string|max:255',
+        'jenis_kelamin' => 'nullable|string|max:255',
+        'alamat' => 'nullable|string|max:255',
+        'rt_rw' => 'nullable|integer|max:255',
+        'kel_desa' => 'nullable|string|max:255',
+        'kecamatan' => 'nullable|string|max:255',
+        'agama' => 'nullable|string|max:255',
+        'status_perkawinan' => 'nullable|string|max:255',
+        'pekerjaan' => 'nullable|string|max:255',
+        'kewarganegaraan' => 'nullable|string|max:255',
+        'berlaku_hingga' => 'nullable|string|max:255',
+        'file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    if ($request->hasFile('file')) {
+        if ($delImg) {
             Storage::disk('minio')->delete($delImg);
         }
 
-        $user->update($request->all());
         $newImg = $request->file('file');
         $filePath = 'uploads/' . time() . '_' . $newImg->getClientOriginalName();
+
         Storage::disk('minio')->put($filePath, file_get_contents($newImg));
 
-        
-
-        
-
-        return redirect()->route('pagenav')->with('success', 'Data has been added successfully!');
+        $user->image = $filePath ?? $user->image;
     }
+
+    $user->update($request->except(['file'])); 
+
+    $user->save();
+
+    return redirect()->route('pagenav')->with('success', 'Data has been updated successfully!');
+}
 
     public function destroy($id)
     {

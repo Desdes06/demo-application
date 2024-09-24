@@ -313,7 +313,9 @@
                         </button>
                     </div>
                     <div class="flex justify-end place-items-center p-4">
-                        <button class="rounded-full px-6 py-2 text-white text-lg font-semibold bg-[#3CB371]">simpan</button>
+                        <button class="rounded-full px-6 py-2 text-white text-lg font-semibold bg-[#3CB371]" type="submit">
+                            simpan
+                        </button>
                     </div>
                 </form>
             </div>
