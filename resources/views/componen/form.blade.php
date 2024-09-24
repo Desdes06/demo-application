@@ -308,9 +308,9 @@
                         <input type="text" id="berlaku_hingga" name="berlaku_hingga" class="border-2 rounded-full pl-5 bg-[#4FCF9E] border-[#458B70] text-white text-md font-semibold py-2 mb-3" value="{{$user->berlaku_hingga}}">
                     </div>
                     <div id="photoPreviewContainer" class="flex items-baseline mt-3">
-                        <img id="photoPreview" src="{{ Storage::disk('s3')->url($user->image) }}" class="w-25 h-40 object-cover rounded-md mr-3" />
-                        <input type="file" id="editPhotoInput" name="updated_photo" accept="image/*" onchange="updatePhotoPreview(event)" style="display:none;" />
-                        <button type="button" id="editPhotoButton" class="rounded-full px-6 py-2 text-white text-md font-semibold bg-[#6CE3DF] border-2 border-[#5AC6BE]" onclick="initiatePhotoEdit()">
+                        <img id="photoPreview-{{$user->id}}" src="{{ Storage::disk('s3')->url($user->image) }}" class="w-25 h-40 object-cover rounded-md mr-3" />
+                        <input type="file" id="editPhotoInput-{{$user->id}}" name="image" accept="image/*" onchange="updatePhotoPreview(event, {{$user->id}})" style="display:none;" />
+                        <button type="button" id="editPhotoButton-{{$user->id}}" class="rounded-full px-6 py-2 text-white text-md font-semibold bg-[#6CE3DF] border-2 border-[#5AC6BE]" onclick="initiatePhotoEdit({{$user->id}})">
                             Ubah
                         </button>
                     </div>        
@@ -440,25 +440,21 @@
 </script>
 
 <script>
-    function initiatePhotoEdit() {
-    document.getElementById('editPhotoInput').click();
-}
-
-function updatePhotoPreview(event) {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-        const fileReader = new FileReader();
-        fileReader.onload = function(e) {
-            const photoPreviewElement = document.getElementById('photoPreview');
-            photoPreviewElement.src = e.target.result;
-            
-            // Optionally, you can add or remove classes here if needed
-            // document.getElementById('photoPreviewContainer').classList.remove('hidden');
-            // document.getElementById('editPhotoButton').textContent = 'Ganti Foto';
-        };
-        fileReader.readAsDataURL(selectedFile);
+    function initiatePhotoEdit(userId) {
+        document.getElementById(`editPhotoInput-${userId}`).click();
     }
-}
+    
+    function updatePhotoPreview(event, userId) {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                const photoPreviewElement = document.getElementById(`photoPreview-${userId}`);
+                photoPreviewElement.src = e.target.result;
+            };
+            fileReader.readAsDataURL(selectedFile);
+        }
+    }
 </script>
 
 @vite('resources/js/dialog.js')
