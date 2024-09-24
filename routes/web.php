@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\IdentitasController;
 use Illuminate\Support\Facades\Route;
 
 // view
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [homeController::class, 'home']);
 
 // data
 Route::get('/pagenav', [IdentitasController::class, 'index'])->name('pagenav');
