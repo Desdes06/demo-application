@@ -27,21 +27,21 @@
 
     <div class="px-24 py-10">
         <table class="w-full border-collapse border border-gray-200">
-            <thead class="bg-gray-100">
+            <thead class="bg-[#4FCF9E]">
                 <tr>
-                    <th class="border border-gray-200 px-6 py-4 text-center text-xl">NIK</th>
-                    <th class="border border-gray-200 px-6 py-4 text-center text-xl">Nama Lengkap</th>
-                    <th class="border border-gray-200 px-6 py-4 text-center text-xl">Tempat, Tanggal Lahir</th>
-                    <th class="border border-gray-200 px-6 py-4 text-center text-xl" style="width: 15%;">Aksi</th>
+                    <th class="border border-gray-200 px-6 py-4 text-center text-xl text-white">NIK</th>
+                    <th class="border border-gray-200 px-6 py-4 text-center text-xl text-white">Nama Lengkap</th>
+                    <th class="border border-gray-200 px-6 py-4 text-center text-xl text-white">Tempat, Tanggal Lahir</th>
+                    <th class="border border-gray-200 px-6 py-4 text-center text-xl text-white" style="width: 15%;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
-                <tr class="hover:bg-gray-50">
+                @foreach($users as $index => $user)
+                <tr class="{{ $index % 2 == 0 ? 'bg-[#A5D6C1]' : 'bg-[#4FCF9E]' }} hover:bg-[#75C1A4]">
                     <td class="border border-gray-200 px-6 py-4 text-center" hidden>{{ $user->id }}</td>
-                    <td class="border border-gray-200 px-6 py-4 text-center text-lg">{{ $user->nik }}</td>
-                    <td class="border border-gray-200 px-6 py-4 text-center text-lg">{{ $user->nama_lengkap }}</td>
-                    <td class="border border-gray-200 px-6 py-4 text-center text-lg">{{ $user->tempat_tanggal_lahir }}</td>
+                    <td class="border border-gray-200 px-6 py-4 text-center text-lg text-white">{{ $user->nik }}</td>
+                    <td class="border border-gray-200 px-6 py-4 text-center text-lg text-white">{{ $user->nama_lengkap }}</td>
+                    <td class="border border-gray-200 px-6 py-4 text-center text-lg text-white">{{ $user->tempat_tanggal_lahir }}</td>
                     <td class="border border-gray-200 px-6 py-4 text-center flex justify-center items-center space-x-1 text-lg">
                         <button type="button" class="flex-shrink-0">
                             <img src="{{ asset('editt.png') }}" data-dialog-target="edit-dialog-{{$user['id']}}" alt="Edit" class="w-8 h-8">
@@ -61,7 +61,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div>    
 
     {{-- popup delete --}}
     <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center">
