@@ -83,18 +83,4 @@ h1 {
     background: transparent;
     box-shadow: rgb(238, 225, 225) 1px 2px 1px;
 }
-/* tabel data layout */
-table {
-    border: 1px solid white;
-    color: white;
-}
-th {
-    background: #4FCF9E;
-    padding: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.4); 
-}
-td {
-    background: #B0E0CE;
-    padding: 20px;
-    text-align: center;
-}
+
