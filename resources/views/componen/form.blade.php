@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="overflow-y-scroll h-full py-5 px-2">
-                <form action="/submit-form" method="POST" enctype="multipart/form-data" class="px-24">
+                <form action="{{ route('identitas.store') }}" method="POST" enctype="multipart/form-data" class="px-24">
                     @csrf
                     <div class="flex flex-col mb-3">
                         <label for="nik" class="text-xl font-bold mb-2 text-white">NIK</label>
@@ -148,7 +148,7 @@
                 
                     <!-- Input File -->
                     <div class="flex flex-col mb-3">
-                        <input type="file" id="fileInput" name="file" accept="image/*" class="hidden" onchange="previewImage(event)" />
+                        <input type="file" id="fileInput" name="image" accept="image/*" class="hidden" onchange="previewImage(event)" />
                         <button type="button" id="uploadButton" class="rounded-xl px-6 py-2 text-white text-md font-semibold bg-[#6CE3DF] border-2 border-[#5AC6BE] w-3/12" onclick="triggerUpload()">
                             Upload foto/File
                         </button>
@@ -191,8 +191,9 @@
                 </div>
             </div>
             <div class="overflow-y-scroll h-full py-5 px-2">
-                <form action="/edit-form/{{ $user->id }}" enctype="multipart/form-data" method="POST" class="px-24">
+                <form action="{{ route('identitas.update', $user->id) }}" enctype="multipart/form-data" method="POST" class="px-24">
                     @csrf
+                    @method('PUT')
                     <div class="flex flex-col mb-3">
                         <label for="nik" class="text-xl font-bold mb-2 text-white">NIK</label>
                         <input type="text" id="nik" name="nik" class="border-2 rounded-full pl-5 bg-[#4FCF9E] border-[#458B70] text-white text-md font-semibold py-2 disabled:bg-[#2D8A67]" disabled value="{{$user->nik}}">
@@ -306,14 +307,15 @@
                         <label for="berlaku" class="text-xl font-bold mb-2 text-white">Berlaku Hingga</label>
                         <input type="text" id="berlaku_hingga" name="berlaku_hingga" class="border-2 rounded-full pl-5 bg-[#4FCF9E] border-[#458B70] text-white text-md font-semibold py-2 mb-3" value="{{$user->berlaku_hingga}}">
                     </div>
-                    <div id="imagePreviewContainer" class="flex items-baseline mt-3">
-                        <img id="imagePreview" class="w-25 h-40 object-cover rounded-md mr-3" />
-                        <button type="button" id="changeButton" class="rounded-full px-6 py-2 text-white text-md font-semibold bg-[#6CE3DF] border-2 border-[#5AC6BE]" onclick="triggerUpload()">
+                    <div id="photoPreviewContainer" class="flex items-baseline mt-3">
+                        <img id="photoPreview" src="{{ Storage::disk('s3')->url($user->image) }}" class="w-25 h-40 object-cover rounded-md mr-3" />
+                        <input type="file" id="editPhotoInput" name="updated_photo" accept="image/*" onchange="updatePhotoPreview(event)" style="display:none;" />
+                        <button type="button" id="editPhotoButton" class="rounded-full px-6 py-2 text-white text-md font-semibold bg-[#6CE3DF] border-2 border-[#5AC6BE]" onclick="initiatePhotoEdit()">
                             Ubah
                         </button>
-                    </div>
+                    </div>        
                     <div class="flex justify-end place-items-center p-4">
-                        <button class="rounded-full px-6 py-2 text-white text-lg font-semibold bg-[#3CB371]">simpan</button>
+                        <button type="submit" class="rounded-full px-6 py-2 text-white text-lg font-semibold bg-[#3CB371]">simpan</button>
                     </div>
                 </form>
             </div>
@@ -407,6 +409,9 @@
                         <label for="berlaku" class="text-xl font-bold mb-2 text-white">Berlaku Hingga</label>
                         <input type="text" id="berlaku_hingga" name="berlaku_hingga" class="border-2 rounded-full pl-5 bg-[#4FCF9E] border-[#458B70] text-white text-md font-semibold py-2 mb-3" disabled value="{{$user->berlaku_hingga}}">
                     </div>
+                    <div id="imagePreviewContainer" class="flex items-baseline mt-3">
+                        <img id="imagePreview"  src="{{ Storage::disk('s3')->url($user->image) }}" class="w-25 h-40 object-cover rounded-md mr-3" />
+                    </div>
                 </form>
             </div>
         </div>
@@ -426,12 +431,34 @@
                 const imagePreview = document.getElementById('imagePreview');
                 imagePreview.src = e.target.result;
                 document.getElementById('imagePreviewContainer').classList.remove('hidden');
-                document.getElementById('uploadButton').classList.add('hidden'); // Hide upload button
-                document.getElementById('changeButton').classList.remove('hidden'); // Show change button
+                document.getElementById('uploadButton').classList.add('hidden');
+                document.getElementById('changeButton').classList.remove('hidden');
             };
             reader.readAsDataURL(file);
         }
     }
+</script>
+
+<script>
+    function initiatePhotoEdit() {
+    document.getElementById('editPhotoInput').click();
+}
+
+function updatePhotoPreview(event) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+        const fileReader = new FileReader();
+        fileReader.onload = function(e) {
+            const photoPreviewElement = document.getElementById('photoPreview');
+            photoPreviewElement.src = e.target.result;
+            
+            // Optionally, you can add or remove classes here if needed
+            // document.getElementById('photoPreviewContainer').classList.remove('hidden');
+            // document.getElementById('editPhotoButton').textContent = 'Ganti Foto';
+        };
+        fileReader.readAsDataURL(selectedFile);
+    }
+}
 </script>
 
 @vite('resources/js/dialog.js')
