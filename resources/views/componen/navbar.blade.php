@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+            body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <header class="bg-white shadow-md shadow-gray-500">
@@ -13,7 +19,7 @@
             <a href="#" class="-m-1.5 p-1.5 mr-2">
               <img style="height:60px" src="{{asset('Logo-kxpXFLZl_-transformed.png')}}" alt="image">
             </a>
-            <h1 class="font-bold text-lg">BAPPENAS</h1>
+            <h1 class="font-bold text-xl">BAPPENAS</h1>
           </div>
           </div>
           <div class="lg:flex lg:gap-x-7 items-center">

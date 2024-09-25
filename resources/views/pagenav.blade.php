@@ -6,7 +6,7 @@
             <div class="arrow">
                 <a href="/"><img src="{{ asset('Vector.png') }}" alt=""></a>
             </div>
-            <div class="title ml-16">
+            <div class="title ml-20">
                 <h1 class="text-gradient-orange-500 to-green-400">Data KTP Pribadi</h1>
             </div>
         </div>
@@ -17,11 +17,11 @@
             class="flex items-center pl-24"
             type="button"
             data-dialog-target="add-dialog">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" class="bi bi-plus-circle mr-4" fill="#5175E3"viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" class="bi bi-plus-circle mr-4" fill="#5175E3"viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
             </svg>
-            <p class="ml-3">tambah berkas</p>
+            <p class="ml-3 text-xl text-[#98A2B2]">Tambah Berkas</p>
         </button>
     </div>
 
