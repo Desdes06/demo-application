@@ -22,7 +22,7 @@ class IdentitasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|string|max:255',
+            'nik' => 'required|string|size:16',
             'nama_lengkap' => 'required|string|max:255',
             'tempat_tanggal_lahir' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:LAKI LAKI,PEREMPUAN',
@@ -35,7 +35,7 @@ class IdentitasController extends Controller
             'pekerjaan' => 'required|string|max:255',
             'kewarganegaraan' => 'required|in:WNI,WNA',
             'berlaku_hingga' => 'required|string|max:255',
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $nikEnkripsi = Crypt::encryptString($request->nik);
