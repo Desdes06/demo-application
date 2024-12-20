@@ -84,7 +84,7 @@
 <script>
     function openDeleteModal(userId) {
     const deleteForm = document.getElementById('deleteForm');
-    deleteForm.action = `/delete/${userId}`; // Atur URL aksi formulir
+    deleteForm.action = `/delete/${userId}`;
     document.getElementById('deleteModal').classList.remove('hidden');
     }
 
